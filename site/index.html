@@ -4,60 +4,141 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>π0 Composition Proof Lab</title>
-  <style>
-    :root { color-scheme: dark; --bg: #070b12; --card: #111827; --text: #e5e7eb; --muted: #9ca3af; --accent: #38bdf8; --warn: #f59e0b; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: ui-sans-serif, system-ui, sans-serif; background: radial-gradient(circle at top, #0f172a, var(--bg)); color: var(--text); }
-    .wrap { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
-    h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
-    .lede { color: var(--muted); font-size: 1.1rem; max-width: 62ch; }
-    .grid { display: grid; gap: 1rem; margin-top: 2rem; }
-    @media (min-width: 800px) { .grid { grid-template-columns: 1.2fr 0.8fr; } }
-    .card { background: rgba(17,24,39,0.9); border: 1px solid #1f2937; border-radius: 16px; padding: 1.25rem; }
-    .verdict { font-size: 2rem; font-weight: 700; color: var(--warn); }
-    pre { background: #020617; border-radius: 12px; padding: 1rem; overflow: auto; font-size: 0.85rem; }
-    code { color: #cbd5e1; }
-    a { color: var(--accent); }
-    ul { padding-left: 1.1rem; }
-    li { margin: 0.35rem 0; color: var(--muted); }
-    .tag { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 999px; background: #172554; color: #93c5fd; font-size: 0.8rem; margin-right: 0.35rem; }
-  </style>
+  <meta name="description" content="Falsify compositional generalization claims for π0-style VLAs — remix vs compose receipts before zero-shot robot demos." />
+  <meta property="og:url" content="https://enaguthi.com/pi0-composition-proof/site/" />
+  <meta property="og:title" content="π0 Composition Proof Lab" />
+  <meta property="og:description" content="Decompose novel tasks, search training manifests, receipt REMIX vs COMPOSE — π0.7 air fryer case." />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./embedded-demos.js"></script>
+  <script src="./app.js" defer></script>
 </head>
 <body>
-  <div class="wrap">
-    <p class="tag">Physical Intelligence · impossible-idea tier</p>
-    <h1>π0 Composition Proof Lab</h1>
-    <p class="lede">Before you claim zero-shot compositional generalization, decompose the task, search the training manifest for tangential episodes, and issue a receipt: <strong>COMPOSE</strong> vs <strong>REMIX</strong> vs <strong>COACH_REQUIRED</strong>.</p>
+  <div class="shell">
+    <nav class="top-nav">
+      <a class="back" href="https://enaguthi.com/">← enaguthi.com</a>
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#cli">CLI</a>
+        <a href="https://github.com/Abhishek21g/pi0-composition-proof-lab">GitHub</a>
+        <a href="https://github.com/Physical-Intelligence/openpi/pull/992">openpi PR</a>
+      </div>
+    </nav>
 
-    <div class="grid">
-      <section class="card">
-        <h2>π0.7 air fryer demo (bundled)</h2>
-        <p class="verdict">COACH_REQUIRED</p>
-        <p>Task: <em>load a sweet potato into the air fryer</em></p>
-        <ul>
-          <li>Tangential: <code>home_airfryer_close_01</code>, <code>home_airfryer_close_02</code></li>
-          <li>Cross-embodiment tangent: <code>droid_franka_pot_01</code></li>
-          <li>Verdict matches PI's blog postmortem — not a deploy checklist</li>
-        </ul>
-        <pre><code>pi0-compose plan --task "load a sweet potato into the air fryer" \
+    <section class="hero" id="top">
+      <div>
+        <p class="eyebrow">Physical Intelligence · π0.7 · independent demo</p>
+        <h1>Prove remix vs compose before the robot demo.</h1>
+        <p class="lede">
+          π0.7's air fryer result wasn't a deploy checklist problem — it was an
+          <strong>evaluation problem</strong>. PI manually searched the training manifest for tangential
+          episodes. This lab automates that falsification: decompose a novel task, search episodes,
+          issue a <code>COMPOSE / REMIX / COACH_REQUIRED</code> receipt.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#dashboard">Open dashboard</a>
+          <a class="btn" href="https://github.com/Abhishek21g/pi0-composition-proof-lab">View on GitHub</a>
+        </div>
+        <dl class="proof-grid">
+          <div><dt>23</dt><dd>passing tests</dd></div>
+          <div><dt>5</dt><dd>verdict classes</dd></div>
+          <div><dt>0</dt><dd>robots required</dd></div>
+        </dl>
+      </div>
+      <aside class="hero-panel">
+        <div class="panel-top">
+          <span><span class="status-dot"></span>pi0-compose</span>
+          <span class="verdict-pill" id="heroVerdict">COACH_REQUIRED</span>
+        </div>
+        <div class="terminal">
+          <span class="prompt">$</span>pi0-compose plan --task "load a sweet potato into the air fryer" \<br />
+          &nbsp;&nbsp;--skills examples/pi07_airfryer_skills.yaml \<br />
+          &nbsp;&nbsp;--manifest examples/bundled_episodes.jsonl<br />
+          <span class="prompt">$</span>pi0-compose run --plan out/plans/&lt;id&gt; --mock<br />
+          <span class="prompt">$</span>pi0-compose doctor --receipt out/receipts/&lt;id&gt;/
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-label">Run ID</span>
+            <span class="stat-value" id="heroRunId">pi07-airfryer-demo</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-label">Coaching</span>
+            <span class="stat-value" id="heroCoaching">yes</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-label">Tangential eps</span>
+            <span class="stat-value" id="heroTangential">3</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="problem">
+      <h2 class="section-title">The impossible idea PI is chasing</h2>
+      <p class="section-lede">
+        Distinguishing genuine compositional generalization from dataset remix is the central evaluation
+        problem for π0.7. This product is <em>not</em> deploy preflight — that's a separate upstream fix
+        (<a href="https://github.com/Physical-Intelligence/openpi/pull/992">openpi#983</a>).
+      </p>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Skill graph</h3>
+          <p>Decompose a novel language command into primitive skills — open, pick, place, close appliance.</p>
+        </article>
+        <article class="card">
+          <h3>Manifest search</h3>
+          <p>Find nearest training episodes per skill. Surface tangential evidence before hardware.</p>
+        </article>
+        <article class="card">
+          <h3>Coaching oracle</h3>
+          <p>Receipt when zero-shot is unsafe but step-by-step coaching may work — the air fryer pattern.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="dashboard">
+      <h2 class="section-title">Live receipt inspector</h2>
+      <p class="section-lede">Bundled π0.7 scenario — verdict <strong id="dashVerdict">COACH_REQUIRED</strong> for task: <em id="dashTask">load a sweet potato into the air fryer</em></p>
+      <div class="dashboard">
+        <div class="scenario-list" id="scenarioList"></div>
+        <div class="inspector">
+          <h3>Doctor gates</h3>
+          <ul class="doctor-list" id="doctorList"></ul>
+          <h3 style="margin-top:1rem;">Top manifest matches</h3>
+          <ul class="match-list" id="matchList"></ul>
+          <h3 style="margin-top:1rem;">Tangential episodes</h3>
+          <ul class="tangential-list" id="tangentialList"></ul>
+          <div class="insight" id="insight"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cli">
+      <h2 class="section-title">CLI</h2>
+      <pre class="cli-block"><code>git clone https://github.com/Abhishek21g/pi0-composition-proof-lab
+cd pi0-composition-proof-lab && pip install -e ".[dev]"
+
+pi0-compose plan \
+  --task "load a sweet potato into the air fryer" \
   --skills examples/pi07_airfryer_skills.yaml \
-  --manifest examples/bundled_episodes.jsonl
+  --manifest examples/bundled_episodes.jsonl --json
 
 pi0-compose run --plan out/plans/&lt;id&gt; --mock
 pi0-compose doctor --receipt out/receipts/&lt;id&gt;/
 pi0-compose report --receipt out/receipts/&lt;id&gt;/ --html</code></pre>
-      </section>
+    </section>
 
-      <section class="card">
-        <h2>Why this is not the PR</h2>
-        <ul>
-          <li>openpi#983 fixes GPU timing lies in inference</li>
-          <li>This lab falsifies <strong>generalization claims</strong></li>
-          <li>Stranger test: hiring manager gets the air fryer remix story in 60s</li>
-        </ul>
-        <p><a href="https://github.com/Abhishek21g/pi0-composition-proof-lab">GitHub</a> · by <a href="https://enaguthi.com">enaguthi.com</a></p>
-      </section>
-    </div>
+    <footer class="footer">
+      <p>
+        Independent demo inspired by public π0.7 writing — not affiliated with Physical Intelligence.
+        <a href="https://github.com/Physical-Intelligence/openpi/pull/992">openpi PR #992</a> ·
+        <a href="https://github.com/Abhishek21g/pi0-composition-proof-lab">product repo</a>
+      </p>
+    </footer>
   </div>
 </body>
 </html>
