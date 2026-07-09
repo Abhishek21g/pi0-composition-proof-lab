@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>π0 Composition Proof Lab</title>
+  <style>
+    :root { color-scheme: dark; --bg: #070b12; --card: #111827; --text: #e5e7eb; --muted: #9ca3af; --accent: #38bdf8; --warn: #f59e0b; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, sans-serif; background: radial-gradient(circle at top, #0f172a, var(--bg)); color: var(--text); }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    .lede { color: var(--muted); font-size: 1.1rem; max-width: 62ch; }
+    .grid { display: grid; gap: 1rem; margin-top: 2rem; }
+    @media (min-width: 800px) { .grid { grid-template-columns: 1.2fr 0.8fr; } }
+    .card { background: rgba(17,24,39,0.9); border: 1px solid #1f2937; border-radius: 16px; padding: 1.25rem; }
+    .verdict { font-size: 2rem; font-weight: 700; color: var(--warn); }
+    pre { background: #020617; border-radius: 12px; padding: 1rem; overflow: auto; font-size: 0.85rem; }
+    code { color: #cbd5e1; }
+    a { color: var(--accent); }
+    ul { padding-left: 1.1rem; }
+    li { margin: 0.35rem 0; color: var(--muted); }
+    .tag { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 999px; background: #172554; color: #93c5fd; font-size: 0.8rem; margin-right: 0.35rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="tag">Physical Intelligence · impossible-idea tier</p>
+    <h1>π0 Composition Proof Lab</h1>
+    <p class="lede">Before you claim zero-shot compositional generalization, decompose the task, search the training manifest for tangential episodes, and issue a receipt: <strong>COMPOSE</strong> vs <strong>REMIX</strong> vs <strong>COACH_REQUIRED</strong>.</p>
+
+    <div class="grid">
+      <section class="card">
+        <h2>π0.7 air fryer demo (bundled)</h2>
+        <p class="verdict">COACH_REQUIRED</p>
+        <p>Task: <em>load a sweet potato into the air fryer</em></p>
+        <ul>
+          <li>Tangential: <code>home_airfryer_close_01</code>, <code>home_airfryer_close_02</code></li>
+          <li>Cross-embodiment tangent: <code>droid_franka_pot_01</code></li>
+          <li>Verdict matches PI's blog postmortem — not a deploy checklist</li>
+        </ul>
+        <pre><code>pi0-compose plan --task "load a sweet potato into the air fryer" \
+  --skills examples/pi07_airfryer_skills.yaml \
+  --manifest examples/bundled_episodes.jsonl
+
+pi0-compose run --plan out/plans/&lt;id&gt; --mock
+pi0-compose doctor --receipt out/receipts/&lt;id&gt;/
+pi0-compose report --receipt out/receipts/&lt;id&gt;/ --html</code></pre>
+      </section>
+
+      <section class="card">
+        <h2>Why this is not the PR</h2>
+        <ul>
+          <li>openpi#983 fixes GPU timing lies in inference</li>
+          <li>This lab falsifies <strong>generalization claims</strong></li>
+          <li>Stranger test: hiring manager gets the air fryer remix story in 60s</li>
+        </ul>
+        <p><a href="https://github.com/Abhishek21g/pi0-composition-proof-lab">GitHub</a> · by <a href="https://enaguthi.com">enaguthi.com</a></p>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+skills:
+  - id: open_drawer
+    label: open drawer
+    keywords: [drawer, pull, slide]
+  - id: pick_object
+    label: pick up object
+    keywords: [pick, grab, grasp, lift]
+  - id: place_in_container
+    label: place object in container
+    keywords: [place, load, put, insert, basket]
+  - id: close_container
+    label: close container or appliance
+    keywords: [close, push, shut, air fryer, basket]
+  - id: operate_appliance
+    label: operate kitchen appliance
+    keywords: [air fryer, oven, appliance, cook]
